@@ -162,12 +162,13 @@ def train(args, tokenizer, encoder):
         model.train()
         
         #save best model
+        logger.info("Saving Model with best parameters)
         if eval_prc > args.best_auprc:
             args.best_auprc = eval_prc
             
-            logger.info("  "+"*"*20)  
+            logger.info("  "+"*"*20)
             logger.info("  Best AUPRC:%s",round(args.best_auprc,4))
-            logger.info("  "+"*"*20)      
+            logger.info("  "+"*"*20)
 
             timestamp = str(int(time.time()))
             checkpoint_prefix = 'checkpoint-best-auprc'
