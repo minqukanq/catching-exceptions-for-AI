@@ -162,7 +162,7 @@ def train(args, tokenizer, encoder):
         model.train()
         
         #save best model
-        logger.info("Saving Model with best parameters)
+        logger.info("Saving Model with best parameters")
         if eval_prc > args.best_auprc:
             args.best_auprc = eval_prc
             
