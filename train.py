@@ -20,7 +20,7 @@ from transformers import (WEIGHTS_NAME, AdamW, get_linear_schedule_with_warmup)
 
 from utils import data_helper as helper
 from utils.data_loader import CodeDataset
-from models.exception_network import ExceptionLSTMNet, ExceptionAttentionNet
+from models.py_exception import ExceptionLSTMNet, PyException
 
 
 logger = logging.getLogger(__name__)
@@ -36,7 +36,7 @@ def train(args, tokenizer, encoder):
     val_loader = DataLoader(valid_dataset, batch_size=args.valid_batch_size, shuffle=True, drop_last=True)
     
     # model = ExceptionNet(n_classes=args.y_train.shape[1], encoder=encoder, embedding_size=args.embedding_size,lstm_hidden_size=256, fc_hidden_size=256, drop_out=0.5)
-    model = ExceptionAttentionNet(n_classes=args.y_train.shape[1], encoder=encoder, embedding_size=args.embedding_size, 
+    model = PyException(n_classes=args.y_train.shape[1], encoder=encoder, embedding_size=args.embedding_size, 
                         heads=args.heads, num_layers=args.num_layers, forward_expansion=args.forward_expansion, drop_out=0.5)
 
     criterion = nn.BCEWithLogitsLoss()
